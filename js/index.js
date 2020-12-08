@@ -1,3 +1,9 @@
+/*********************************************************************************************/
+
+/********Bajusz István OBYBZK WEB Technológiák I. beadandó feladat JS/************************/
+
+/*********************************************************************************************/
+
 /*A még nem lényeges dolgokat elrejti a JS */
 $(document).ready(function(){  
 	$("#addCar").hide();
@@ -71,22 +77,23 @@ function homeMenu() {
     $("#modCar").fadeOut(700);
 }
 
-/*A "Car" táblázat kilisázásához szükséges függvény */
+/* ---------------------- "Car" táblázat" ---------------------------*/
 
+/*A "Car" táblázat kilisázásához szükséges függvény */
 function listCars() {
 	/* Minden mást elrejt, ami nem ide tartozik (a slide, a menük és az alsó információk maradnak) */
     $("#listManufacturers").hide();
-    $("#addCar").hide();
-    $("#addManufacturer").hide();
-    $("#modManufacturer").hide();
-    $("#modCar").hide();
+    $("#addCar").fadeOut(700);
+    $("#addManufacturer").fadeOut(700);
+    $("#modManufacturer").fadeOut(700);
+    $("#modCar").fadeOut(700);
 	$("#listCar").fadeIn(700);
 
 	/*Az információkat megszerzi, majd táblázattá alakítja */
 	/* a let kulcsszó miatt csak a blokkon belül használhatóak a változók */
     $.getJSON(`https://webtechcars.herokuapp.com/api/cars`, function (data) {
-        let table = $('<table id="listTableCar" border="1" style="background-color:white;"></table>');
-        table.append('<tr><th class="listth">ID</th><th class="listth">Name</th><th class="listth">Consumption</th><th class="listth">Color</th><th class="listth">Manufacturer</th><th class="listth">Available</th><th class="listth">Year</th><th class="listth">Horsepower</th></tr>');
+        let table = $('<table id="listTableCar" border="2" class="table2"></table>');
+        table.append('<tr><th class="tableEntity">ID</th><th class="tableEntity">Name</th><th class="tableEntity">Consumption</th><th class="tableEntity">Color</th><th class="tableEntity">Manufacturer</th><th class="tableEntity">Available</th><th class="tableEntity">Year</th><th class="tableEntity">Horsepower</th></tr>');
         $.each(data, function (key, value) {
 			/*Behelyettesíti a megfelelő adatokat */
             let row = $('<tr></tr>');
@@ -123,7 +130,6 @@ function addCar() {
 	$("#listCar").fadeIn(700);
 	$("#addCar").fadeIn(700);
 
-	/*Dropdown létrehozás */
     let dropdown = $('#dropdown');
 
     dropdown.empty();
@@ -140,10 +146,10 @@ function addCar() {
 /*A "Car" listához elemet hozzáadó felület előhozása */
 function modCar() {
     $("#listManufacturers").hide();
-    $("#listCar").hide();
     $("#addCar").hide();
     $("#modManufacturer").hide();
     $("#addManufacturer").hide();
+	$("#listCar").fadeIn(700);
     $("#modCar").fadeIn(700);
 
 }
@@ -158,7 +164,7 @@ function deleteCar (id) {
             listCars();
         },
         error: function () {
-            alert("Error! Check the entered data!");
+            alert("Error!");
         }
     });
 }
@@ -174,8 +180,8 @@ function deleCar() {
 
 
     $.getJSON(`https://webtechcars.herokuapp.com/api/cars`, function (data) {
-        let table = $('<table id="listTableCar" border="1" style="background-color:white;"></table>');
-        table.append('<tr><th class="listth">Delete</th><th class="listth">ID</th><th class="listth">Name</th><th class="listth">Consumption</th><th class="listth">Color</th><th class="listth">Manufacturer</th><th class="listth">Available</th><th class="listth">Year</th><th class="listth">Horsepower</th></tr>');
+        let table = $('<table id="listTableCar" border="2" class="table2"></table>');
+        table.append('<tr><th class="tableEntity">Delete</th><th class="tableEntity">ID</th><th class="tableEntity">Name</th><th class="tableEntity">Consumption</th><th class="tableEntity">Color</th><th class="tableEntity">Manufacturer</th><th class="tableEntity">Available</th><th class="tableEntity">Year</th><th class="tableEntity">Horsepower</th></tr>');
         $.each(data, function (key, value) {
             let row = $('<tr></tr>');
             let delButton = $('<td class="tableEntity"><button onclick="deleteCar(\''+value._id+'\')">Delete</button></td>');
@@ -213,8 +219,8 @@ function modifCar() {
 
 
     $.getJSON(`https://webtechcars.herokuapp.com/api/cars`, function (data) {
-        let table = $('<table id="listTableCar" border="1" style="background-color:white;"></table>');
-        table.append('<tr><th class="listth">Modify</th><th class="listth">ID</th><th class="listth">Name</th><th class="listth">Consumption</th><th class="listth">Color</th><th class="listth">Manufacturer</th><th class="listth">Available</th><th class="listth">Year</th><th class="listth">Horsepower</th></tr>');
+        let table = $('<table id="listTableCar" border="2" class="table2"></table>');
+        table.append('<tr><th class="tableEntity">Modify</th><th class="tableEntity">ID</th><th class="tableEntity">Name</th><th class="tableEntity">Consumption</th><th class="tableEntity">Color</th><th class="tableEntity">Manufacturer</th><th class="tableEntity">Available</th><th class="tableEntity">Year</th><th class="tableEntity">Horsepower</th></tr>');
         $.each(data, function (key, value) {
             let row = $('<tr></tr>');
             let modButton = $("<td class='tableEntity'><button onclick='modifyCar("+JSON.stringify(value)+")'>Modify</button></td>");
@@ -262,31 +268,35 @@ function modifyCar(car){
     const url = 'https://webtechcars.herokuapp.com/api/manufacturers';
     $.getJSON(url, function (data) {
         $.each(data, function (key, entry) {
-            dropdown.append($('<option></option>').attr('value', entry._id).text(entry.name));
+            dropdown.append($('<option></option>').attr('value', entry.name).text(entry.name));
         })
         manuf = data;
     }).then(function (){
         dropdown.val(0);
         for (let i in manuf) {
             if (manuf[i].name === car.manufacturer) {
-                dropdown.val(manuf[i]._id);
+                dropdown.val(manuf[i].name);
             }
         }
     });
 }
 
+/*-------------------"Car" táblázat vége----------------------*/
+
+/*------------------"Manufacturers" táblázat--------------------*/
+
 /*A "Manufacturers" lista betöltése */
 function listManufacturers() {
     $("#listCar").hide();
-    $("#addCar").hide();
-    $("#addManufacturer").hide();
-    $("#modManufacturer").hide();
-    $("#modCar").hide();
+    $("#addCar").fadeOut(700);
+    $("#addManufacturer").fadeOut(700);
+    $("#modManufacturer").fadeOut(700);
+    $("#modCar").fadeOut(700);
 	$("#listManufacturers").fadeIn(700);
 
     $.getJSON("https://webtechcars.herokuapp.com/api/manufacturers", function (data) {
-        let table = $('<table id="listTableManufacturers" border="1" style="background-color:white;"></table>');
-        table.append('<tr><th class="listth">ID</th><th class="listth">Name</th><th class="listth">Country</th><th class="listth">Founded</th></tr>');
+        let table = $('<table id="listTableManufacturers" border="2" class="table2"></table>');
+        table.append('<tr><th class="tableEntity">ID</th><th class="tableEntity">Name</th><th class="tableEntity">Country</th><th class="tableEntity">Founded</th></tr>');
         $.each(data, function (key, value) {
             let row = $('<tr></tr>');
             let idCell = $('<td class="tableEntity">' + value._id + '</td>');
@@ -313,8 +323,8 @@ function modifManufacturer() {
 	$("#listManufacturers").fadeIn(700);
 
     $.getJSON("https://webtechcars.herokuapp.com/api/manufacturers", function (data) {
-        let table = $('<table id="listTableManufacturers" border="1" style="background-color:white;"></table>');
-        table.append('<tr><th class="listth">Modify</th><th class="listth">ID</th><th class="listth">Name</th><th class="listth">Country</th><th class="listth">Founded</th></tr>');
+        let table = $('<table id="listTableManufacturers" border="2" class="table2"></table>');
+        table.append('<tr><th class="tableEntity">Modify</th><th class="tableEntity">ID</th><th class="tableEntity">Name</th><th class="tableEntity">Country</th><th class="tableEntity">Founded</th></tr>');
         $.each(data, function (key, value) {
             let row = $('<tr></tr>');
             let modButton = $("<td class='tableEntity'><button onclick='modifyManufacturer("+JSON.stringify(value)+")'>Modify</button></td>");
@@ -343,8 +353,8 @@ function deleManufacturer() {
 	$("#listManufacturers").fadeIn(700);
 
     $.getJSON("https://webtechcars.herokuapp.com/api/manufacturers", function (data) {
-        let table = $('<table id="listTableManufacturers" border="1" style="background-color:white;"></table>');
-        table.append('<tr><th class="listth">ID</th><th class="listth">Name</th><th class="listth">Country</th><th class="listth">Founded</th></tr>');
+        let table = $('<table id="listTableManufacturers" border="2" class="table2"></table>');
+        table.append('<tr><th class="tableEntity">Delete</th><th class="tableEntity">ID</th><th class="tableEntity">Name</th><th class="tableEntity">Country</th><th class="tableEntity">Founded</th></tr>');
         $.each(data, function (key, value) {
             let row = $('<tr></tr>');
             let delButton = $('<td class="tableEntity"><button onclick="deleteManufacturer(\''+value._id+'\')">Delete</button></td>');
@@ -360,7 +370,7 @@ function deleManufacturer() {
             table.append(row)
         });
         $('#listManufacturers').html(table);
-    });
+    });	
 }
 
 /*A "Manufacturers" listából egy elem törlése */
@@ -373,7 +383,7 @@ function deleteManufacturer (id) {
             listManufacturers();
         },
         error: function () {
-            alert("Error! Check the entered data!");
+            alert("Error!");
         }
     });
 
@@ -407,6 +417,8 @@ function modManufacturer() {
 	$("#listManufacturers").fadeIn(700);
 	$("#modManufacturer").fadeIn(700);
 }
+
+/*---------------"Manufacturer" táblázat vége-------------------*/
 
 /*A tevékenységek után a gombnyomásra való utasítások */
 $(function() {

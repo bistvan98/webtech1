@@ -1,3 +1,9 @@
+<!-------------------------------------------------------------------------------------------->
+
+<!-------Bajusz István OBYBZK WEB Technológiák I. beadandó feladat HTML!---------------------->
+
+<!-------------------------------------------------------------------------------------------->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,23 +29,19 @@
 		<a href="javascript:void(0);" class="icon" onclick="myFunction()">
 			<i class="fa fa-bars"></i>
 		</a>
-		<div class="centeredd">
-		<img src="images/logo.jpg"style="height:40%; width:40%; border-radius: 100px;">
-		</div>
 	</div>
-	
+
 	<!------------Oldalsó eltűnő menü: táblázat módosítása!------------>
 	
 	<div id="mySidenav" class="sidenav">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<a id="addCarsButton" onclick="addCar()">Add Car</a>
-		<a id="addManufacturersButton" onclick="addManufacturer()">Add Manufacturer</a>
-		<a id="modCarsButton" onclick="modifCar()">Modify Car</a>
-		<a id="modManufacturersButton" onclick="modifManufacturer()">Modify Manufacturer</a>
-		<a id="delManufacturerButton" onclick="deleCar()">Delete Car</a>
-		<a id="delCarButton" onclick="deleManufacturer()">Delete Manufacturer</a>
+		<a href="#myTopnav" id="addCarsButton" onclick="addCar()">Add Car</a>
+		<a href="#myTopnav" id="addManufacturersButton" onclick="addManufacturer()">Add Manufacturer</a>
+		<a href="#myTopnav" id="modCarsButton" onclick="modifCar()">Modify Car</a>
+		<a href="#myTopnav" id="modManufacturersButton" onclick="modifManufacturer()">Modify Manufacturer</a>
+		<a href="#myTopnav" id="delManufacturerButton" onclick="deleCar()">Delete Car</a>
+		<a href="#myTopnav" id="delCarButton" onclick="deleManufacturer()">Delete Manufacturer</a>
 	</div>
-	
 	
 	<!------------Táblázat lekérdezéshez / módosításhoz szükséges részek!------------>
 	
@@ -212,7 +214,7 @@
 	
 	<!------------Köszöntő szöveg!------------>
 	<div class="welcome">
-		<h1 align="center">Welcome to the Dealership's page!</h1>
+		<h1 align="center" style="color: #FFFAFA;">Welcome to the Dealership's page!</h1>
 	</div>
 			
 	<!------------A főoldalon lévő autós képek váltakozásához szükséges HTML rész!------------>		
@@ -220,37 +222,37 @@
 	<div class="slideshow-container"> <!------------Képek betöltése, hozzájuk tartozó szövegek megadása!------------>
 		<div class="mySlides fade">
 			<div class="numbertext">1 / 6</div>
-			<img src="images/carpicture1.jpg" style="width:100%">
+			<img src="images/carpicture1.jpg" style="width:100%" alt="mercedes">
 			<div class="text">Mercedes</div>
 		</div>
 
 		<div class="mySlides fade">
 			<div class="numbertext">2 / 6</div>
-			<img src="images/carpicture2.jpg" style="width:100%">
+			<img src="images/carpicture2.jpg" style="width:100%" alt="porsche">
 			<div class="text">Porsche</div>
 		</div>
 
 		<div class="mySlides fade">
 			<div class="numbertext">3 / 6</div>
-			<img src="images/carpicture3.jpg" style="width:100%">
+			<img src="images/carpicture3.jpg" style="width:100%" alt="a car">
 			<div class="text">A car</div>
 		</div>
 				
 		<div class="mySlides fade">
 			<div class="numbertext">4 / 6</div>
-			<img src="images/carpicture4.jpg" style="width:100%">
+			<img src="images/carpicture4.jpg" style="width:100%" alt="first audi">
 			<div class="blacktext">First Audi</div>
 		</div>
 				
 		<div class="mySlides fade">
 			<div class="numbertext">5 / 6</div>
-			<img src="images/carpicture5.jpg" style="width:100%">
+			<img src="images/carpicture5.jpg" style="width:100%" alt="second audi">
 			<div class="blacktext">Second Audi</div>
 		</div>
 				
 		<div class="mySlides fade">
 			<div class="numbertext">6 / 6</div>
-			<img src="images/carpicture6.jpg" style="width:100%">
+			<img src="images/carpicture6.jpg" style="width:100%" alt="bugatti">
 			<div class="text">Bugatti</div>
 		</div>
 
@@ -277,8 +279,62 @@
 	<br>
 	
 	<!------------Infomációk, CSS-el szebbre csinálva (lekerekített sarok, árnyék, hover)!------------>
+	<b>
+	<div class="texts">
 	
-	<h2 style="margin-left:500px;">Contact:</h2><br>
+		<p>Feel free to browse through our collection and contact me if you have any questions or anything catches your attention!</p>
+		
+		<br>
+		
+		<p style="text-align: center;">We <u>guarantee</u> you:</p><br><br>
+		
+		<table style="margin-left: 10%;">
+			<tr>
+				<td width="30%">
+					<img src="images/quality.png" style="width:110%; height:110%; margin-left:25%;" alt="quality">
+				</td>
+				<td width="70%">
+					<hr align="left" style="width:70%; margin-left:25%;">
+					<p style="margin-left:25%;"><i>Quality:</i></p>
+					<p style="margin-left:25%;">We offer you the best quality! <br><br>We have not received any complaints <br>about our service yet.</p>
+					<hr align="left" style="width:70%; margin-left:25%;">
+				</td>
+			</tr>
+		</table>
+		
+		<table style="margin-right: 10%; padding-top: 5%;">
+			<tr>
+				<td width="50%" style="padding-bottom: 8%;">
+					<hr align="left" style="width:56%; margin-top:17%; margin-left: 70%;">
+					<p style="text-align: right; margin-right: 6%;"><i>The best vehicles:</i></p>
+					<p style="text-align: right; margin-right: -25%;">We have the best vehicles in the country </p><br><p style="text-align:right; margin-right: 15%; margin-top: -2.6%;">in all types!</p>
+					<hr align="left" style="width:56%; margin-left: 70%;">
+				</td>
+				<td width="50%">
+					<img src="images/ikarus.jpg" style="height:45%; width:45%; margin-right:5%; box-shadow: 3px 3px 3px #000;" alt="best cars" align="right">
+				</td>
+			</tr>
+		</table>
+		
+		<table style="margin-left: 10%; padding-top: 5%;">
+			<tr>
+				<td width="30%">
+					<img src="images/lowprice.png" style="width:100%; height:100%; margin-left:25%;" alt="low price">
+				</td>
+				<td width="70%">
+					<hr align="left" style="width:70%; margin-left: 25%">
+					<p style="margin-left:25%;"><i>Low price:</i></p>
+					<p style="margin-left:25%;">We try to keep prices as low as possible <br>with the best possible quality!</p>
+					<hr align="left" style="width:70%; margin-left: 25%">
+				</td>
+			</tr>
+		</table>
+	</div>
+	</b>
+	
+	<button class="button button1" style="margin-top: 10%; align: center; margin-left: 45%;" onClick="document.getElementById('myTopnav').scrollIntoView();">Jump to the top</button>
+	
+	<h2 style="margin-left:500px; color: #FFFAFA; padding-top: 10%;">Contact:</h2><br>
 	<div class="zoom">
 		<div id="cont" class="card">
 			<img src="images/header.jpg" alt="My Picture" style="width:40%; height:40%">
@@ -286,7 +342,8 @@
 				<h4><b>Bajusz István</h4>
 				<p>OBYBZK</p>
 				<p>bajuszistvn@gmail.com</p>
-				<p>Programtervező Informatikus</b></p>
+				<p>Programtervező Informatikus</p>
+				<p>GitHub Repo: https://github.com/bistvan98/webtech1</p></b>
 			</div>
 		</div>
 	</div><br><br><br><br><br>
